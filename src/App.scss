@@ -1,0 +1,50 @@
+.App{
+    padding: 50px 20px;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+
+}
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.block{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    p {
+        font-size: 30px;
+        font-weight: 700;
+    }
+}
+.Employees{
+    width: 100%;
+}
+.Employee{
+    &__name{
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    &__radio-btns{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.EmployeeList{
+    margin-top: 10px;
+    &__month{
+        font-weight: 700;
+        font-size: 16;
+    }
+}
+
+.employee-info:empty{
+    &::before{
+        content: '-----';
+    }
+}

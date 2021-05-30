@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React  from "react";
+import './App.scss';
+import Employees from './components/Employees/Employees';
+import EmployeesBirth from './components/EmployeesBirth/EmployeesBirth';
+import {connect} from 'react-redux';
 
-function App() {
+const App = props => {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Employees 
+        addBirthday = {props.createBirthArr}
+        removeBirthday = {props.removeBirthArr}
+        birthArray = {props.newBirthArray}
+      />
+      <EmployeesBirth 
+        birthArray = {props.newBirthArray}
+      />
     </div>
   );
 }
 
-export default App;
+const createBirthArr = employee => {
+  return {
+    type : 'ACTIVE',
+    payload : employee
+  }
+}
+const removeBirthArr = employee => {
+  return {
+    type : 'NOT-ACTIVE',
+    payload : employee
+  }
+}
+
+const mapDispatchToProps = {
+  createBirthArr,
+  removeBirthArr
+}
+const mapStateToProps = state => {
+  return {
+    newBirthArray : state.data
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
